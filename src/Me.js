@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 
+import emelie from './emelie.jpg';
+
 class Me extends Component {
   render() {
     return (
       <main>
         <h1>Min me-app</h1>
+        <img src={emelie} alt="me" />
         <p>Mitt namn är Emelie Åslund. Jag är 25år gammal. Född och uppvuxen i Ekerö, Stockholm. Jag gick på NTI-Gymnasiet där jag studerade spelprogrammering. För tillfället studerar jag samtidigt som jag jobbar på Lidl, där jag har jobbat sen 2013.</p>
         <p>Jag valde att jobba efter gymnasiet då jag behövde en paus från att plugga, sen blev det lite längre än planerat. Jag har varit intresserad utav programmering sen ung ålder.</p>
 
