@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import react from './react.png'
+import react from '../images/react.png'
 
 class WeekTwo extends Component {
     render() {

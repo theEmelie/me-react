@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 
 import Me from './Me.js';
-import Report from './Report.js';
+import Report from './reports/Report.js';
 import Forms from './Forms.js';
 
-import './App.css';
+import './styles/App.css';
 
 class App extends Component {
   render() {

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
 
+import './styles/forms.css';
+
 // Years for calender
 var startYear = 2019;
 var numYears = 110;
@@ -55,17 +57,19 @@ class Forms extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    // Requirements for a valid email
     validateEmail(email) {
         var regEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return regEmail.test(String(email).toLowerCase());
     }
 
+    // Requirements for a valid name
     validateName(name) {
-        console.log(name);
         var regName = /^[a-zA-ZåäöÅÄÖ '!]+$/;
         return regName.test(String(name).toLowerCase());
     }
 
+    // Requirements for a valid password
     validatePass(pass) {
         return pass.length >= 6;
     }
@@ -84,35 +88,28 @@ class Forms extends Component {
         this.setState({
             fields
         });
-        // console.log(this.state.fields[field]);
     }
 
     yearChange(field, e) {
         this.fieldChange(field, e);
         this.checkDate(this.state.fields["year"], this.state.fields["month"], this.state.fields["day"]);
-        // console.log(this.state.errors);
     }
 
     monthChange(field, e) {
         this.fieldChange(field, e);
         this.checkDate(this.state.fields["year"], this.state.fields["month"], this.state.fields["day"]);
-        // console.log(this.state.errors);
     }
 
     dayChange(field, e) {
         this.fieldChange(field, e);
         this.checkDate(this.state.fields["year"], this.state.fields["month"], this.state.fields["day"]);
-        // console.log(this.state.errors);
-        // console.log(this.state);
     }
 
+    // Check if date is valid
     checkDate(y, m, d) {
         let errors = this.state.errors;
         let presumedDate = new Date(y, m-1, d);
 
-        // console.log(y,m,d);
-        // console.log(presumedDate);
-        // console.log(presumedDate.getDate());
         if (presumedDate.getDate() !== d) {
             let dateValid = "dateInvalid"
             this.setState({
@@ -134,6 +131,7 @@ class Forms extends Component {
         }
     }
 
+    // Check if email is valid
     emailChange(field, e) {
         let errors = this.state.errors;
 
@@ -162,6 +160,7 @@ class Forms extends Component {
         console.log(this.state);
     }
 
+    // Check if name is valid
     nameChange(field, e) {
         let errors = this.state.errors;
 
@@ -189,6 +188,7 @@ class Forms extends Component {
         }
     }
 
+    // Check if password is valid
     passChange(field, e) {
         let errors = this.state.errors;
 
