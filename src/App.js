@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 
-import Me from './Me.js';
+import Me from './components/Me.js';
 import Report from './reports/Report.js';
-import Forms from './Forms.js';
+import Forms from './components/Forms.js';
 
 import './styles/App.css';
 

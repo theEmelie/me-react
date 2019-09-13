@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import max from './images/max.jpg';
-import emelie from './images/emelie.jpg';
+import max from '../images/max.jpg';
+import emelie from '../images/emelie.jpg';
 
 class Me extends Component {
   render() {

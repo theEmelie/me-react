@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
 
-import './styles/forms.css';
+import '../styles/forms.css';
 
 // Years for calender
 var startYear = 2019;
