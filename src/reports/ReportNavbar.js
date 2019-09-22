@@ -1,21 +1,51 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 
-import WeekOne from './WeekOne.js';
-import WeekTwo from './WeekTwo.js';
+import ShowReport from './ShowReport.js';
+import AddReport from './AddReport.js';
 
 class ReportNavbar extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            reports: []
+        }
+        this.getWeeks()
+    }
+
+    getWeeks() {
+        const url = "https://me-api.emelieaslund.me/reports/get-weeknumbers";
+        fetch(url, {
+            method: 'GET',
+            headers: {'Content-Type': 'application/json'}
+        })
+        .then(res => res.json())
+        .then(response => this.displayNavbarLinks(response));
+    }
+
+    displayNavbarLinks(response) {
+        // console.log(response);
+        this.setState({
+            reports: response.data
+        })
+    }
+
   render() {
-      // console.log('reportnavbar')
+      const weeks = this.state.reports.map(function(item) {
+          return <li key={item.weeknumber}><Link to={`/reports/week/${item.weeknumber}`}>kmom0{item.weeknumber}</Link></li>
+      })
+
     return (
       <Router>
         <div className="ReportNav">
             <ul>
-              <li><Link to="/reports/week/1">kmom01</Link></li>
-              <li><Link to="/reports/week/2">kmom02</Link></li>
+            <li key="add"><Link to="/reports/add-report">Skapa ny rapport</Link></li>
+            <br />
+            <br />
+                {weeks}
             </ul>
-          <Route exact path="/reports/:week/1" component={WeekOne} />
-          <Route exact path="/reports/:week/2" component={WeekTwo} />
+            <Route strict path="/reports/week/:number" component={ShowReport} />
+            <Route exact path="/reports/add-report" component={AddReport} />
         </div>
       </Router>
     );

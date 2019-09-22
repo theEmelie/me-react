@@ -84,6 +84,16 @@ class Forms extends Component {
 
     fieldChange(field, e) {
         let fields = this.state.fields;
+        fields[field] = e.target.value;
+        console.log(e.target.value);
+        this.setState({
+            fields
+        });
+        console.log(this.state);
+    }
+
+    fieldDateChange(field, e) {
+        let fields = this.state.fields;
         fields[field] = e.value;
         this.setState({
             fields
@@ -91,17 +101,17 @@ class Forms extends Component {
     }
 
     yearChange(field, e) {
-        this.fieldChange(field, e);
+        this.fieldDateChange(field, e);
         this.checkDate(this.state.fields["year"], this.state.fields["month"], this.state.fields["day"]);
     }
 
     monthChange(field, e) {
-        this.fieldChange(field, e);
+        this.fieldDateChange(field, e);
         this.checkDate(this.state.fields["year"], this.state.fields["month"], this.state.fields["day"]);
     }
 
     dayChange(field, e) {
-        this.fieldChange(field, e);
+        this.fieldDateChange(field, e);
         this.checkDate(this.state.fields["year"], this.state.fields["month"], this.state.fields["day"]);
     }
 
@@ -157,7 +167,7 @@ class Forms extends Component {
                 errors
             });
         }
-        console.log(this.state);
+        // console.log(this.state);
     }
 
     // Check if name is valid
@@ -229,11 +239,20 @@ class Forms extends Component {
         } else if (this.state.errors["nameError"]) {
             alert('Du måste ange ett giltigt namn');
         } else {
+            const url = "https://me-api.emelieaslund.me/auth/register";
+            const dob = this.state.fields["year"].toString() + "-" + this.state.fields["month"].toString() + "-" + this.state.fields["day"].toString();
+            fetch(url, {
+                method: 'POST',
+                body: JSON.stringify({
+                    name: this.state.fields["name"],
+                    email: this.state.fields["email"],
+                    password: this.state.fields["pass"],
+                    birthdate: dob }),
+                headers: {'Content-Type': 'application/json'}
+            })
+            .then(res => res.json())
+            .then(response => console.log("success"));
             alert('Du har registrerat en användare!');
-            // let fields = [];
-            // this.setState({
-            //     fields
-            // });
         }
     }
 
@@ -244,7 +263,7 @@ class Forms extends Component {
             <form onSubmit={this.handleSubmit}>
                 <label>
                 Namn: <br/>
-                <input name="names" className={this.state.nameValid} type="text" value={this.state.names} onChange={this.nameChange.bind(this, "names")} />
+                <input name="names" className={this.state.nameValid} type="text" value={this.state.name} onChange={this.nameChange.bind(this, "name")} />
                 </label><br/>
 
                 <label>

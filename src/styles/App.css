@@ -8,6 +8,12 @@ html {
     background-color: #6286BF;
 }
 
+/* @media (min-width: 600px) {
+  .App {
+    background-color: lightblue;
+  }
+} */
+
 .App {
     width: 65em;
     margin: 0 auto;
