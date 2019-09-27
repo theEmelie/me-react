@@ -12,7 +12,11 @@ git:
     submodules: false
 
 before_script:
+    echo $PATH
     - npm install
+    - wget http://chromedriver.storage.googleapis.com/2.24/chromedriver_win32.zip
+    - unzip chromedriver_win32.zip -d /home/travis/virtualenv/python2.7.12/bin/
+    - export CHROME_BIN=chromium-browser
 
 script:
     - npm test
