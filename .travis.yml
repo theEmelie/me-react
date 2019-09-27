@@ -14,9 +14,9 @@ git:
 before_script:
     echo $PATH
     - npm install
-    - wget http://chromedriver.storage.googleapis.com/2.24/chromedriver_linux64.zip
-    - unzip chromedriver_linux64.zip -d /home/travis/bin
-    ls -l /home/travis/bin
+    - wget http://chromedriver.storage.googleapis.com/77.0.3865.40/chromedriver_win32.zip
+    - unzip chromedriver_win32.zip -d /home/travis/bin
+    sudo chmod +x /home/travis/bin/chromedriver.exe
     - export CHROME_BIN=chromium-browser
 
 script:
