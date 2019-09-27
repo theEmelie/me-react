@@ -7,7 +7,7 @@ class ShowReport extends Component {
         super(props);
         this.state = {
             report: []
-        }
+        };
         this.getReports();
 
         this.triggerEdit = this.triggerEdit.bind(this);
@@ -21,14 +21,14 @@ class ShowReport extends Component {
             method: 'GET',
             headers: {'Content-Type': 'application/json'}
         })
-        .then(res => res.json())
-        .then(response => this.saveReportData(response));
+            .then(res => res.json())
+            .then(response => this.saveReportData(response));
     }
 
     saveReportData(response) {
         this.setState({
             report: response.data
-        })
+        });
     }
 
     componentDidUpdate(prevProps) {
@@ -37,7 +37,7 @@ class ShowReport extends Component {
         }
     }
 
-    triggerEdit(e) {
+    triggerEdit() {
         window.location.href="/reports/edit-report/" + this.props.match.params.number.toString();
     }
 
@@ -46,13 +46,14 @@ class ShowReport extends Component {
         const loggedIn = sessionStorage.getItem('jwtToken') != null;
 
         if (loggedIn) {
-            button = <button onClick={this.triggerEdit.bind(this)}>Redigera</button>
+            button = <button onClick={this.triggerEdit.bind(this)}>Redigera</button>;
         }
 
         const myReport = this.state.report.map(function(item) {
             return <div key={item.weeknumber} className="reports"><h2>{item.title}</h2>
-            <p dangerouslySetInnerHTML={{__html: item.description}} /></div>
-        })
+                <p dangerouslySetInnerHTML={{__html: item.description}} /></div>;
+        });
+
         return (
             <div className="reports">
                 {myReport}
