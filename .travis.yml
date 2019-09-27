@@ -16,6 +16,7 @@ before_script:
     - npm install
     - wget http://chromedriver.storage.googleapis.com/2.24/chromedriver_linux64.zip
     - unzip chromedriver_linux64.zip -d /home/travis/bin
+    ls -l /home/travis/bin
     - export CHROME_BIN=chromium-browser
 
 script:
