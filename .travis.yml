@@ -13,7 +13,6 @@ git:
 
 before_script:
     - npm install
-    - npm install -g chromedriver
 
 
 script:

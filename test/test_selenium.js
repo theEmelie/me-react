@@ -9,7 +9,7 @@ test.describe("Use-Case 1, Homepage", function() {
     test.beforeEach(function(done) {
         this.timeout(30000);
         browser = new webdriver.Builder()
-        .withCapabilities(webdriver.Capabilities.chrome()).build();
+        .withCapabilities(webdriver.Capabilities.firefox()).build();
 
         browser.get("https://emelieaslund.me/");
         done();
@@ -94,7 +94,7 @@ test.describe("Use-case 2, Reports->Forms", function() {
     test.beforeEach(function(done) {
         this.timeout(30000);
         browser = new webdriver.Builder()
-        .withCapabilities(webdriver.Capabilities.chrome()).build();
+        .withCapabilities(webdriver.Capabilities.firefox()).build();
 
         browser.get("https://emelieaslund.me/reports/");
         done();
@@ -109,7 +109,7 @@ test.describe("Use-case 2, Reports->Forms", function() {
         // display element background color
         browser.findElement(By.className("App")).then(function(displayElement) {
             displayElement.getCssValue("background-color").then(function(bgColor) {
-                assert.equal(bgColor, "rgba(98, 134, 191, 1)");
+                assert.equal(bgColor, "rgb(98, 134, 191)");
             });
         });
 
@@ -148,7 +148,7 @@ test.describe("Use-case 3, Forms->Login", function() {
     test.beforeEach(function(done) {
         this.timeout(30000);
         browser = new webdriver.Builder()
-        .withCapabilities(webdriver.Capabilities.chrome()).build();
+        .withCapabilities(webdriver.Capabilities.firefox()).build();
 
         browser.get("https://emelieaslund.me/forms/");
         done();
@@ -163,7 +163,7 @@ test.describe("Use-case 3, Forms->Login", function() {
         // display element background color
         browser.findElement(By.className("App")).then(function(displayElement) {
             displayElement.getCssValue("background-color").then(function(bgColor) {
-                assert.equal(bgColor, "rgba(98, 134, 191, 1)");
+                assert.equal(bgColor, "rgb(98, 134, 191)");
             });
         });
 
