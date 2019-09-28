@@ -25,9 +25,6 @@ before_script:
     - sudo apt-get --only-upgrade install google-chrome-stable
     - sudo cp chromedriver /usr/local/bin/.
     - sudo chmod +x /usr/local/bin/chromedriver
-    - export DISPLAY=:99.0
-    - sh -e /etc/init.d/xvfb start
-    - sleep 3
 
 script:
     - npm test
