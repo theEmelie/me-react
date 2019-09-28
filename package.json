@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "add": "^2.0.6",
+    "eslint-plugin-vue": "^5.2.3",
     "or": "^0.2.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
