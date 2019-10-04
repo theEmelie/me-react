@@ -1,0 +1,27 @@
+.allMessages {
+    width: 100%;
+    height: 30vh;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 2rem;
+    overflow: auto;
+    padding: 1em;
+}
+
+.newMessage {
+    font-family: 'Inter UI', sans-serif;
+    width: 100%;
+    height: 5em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1.2rem;
+}
+
+.usernameBox {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.chatLine {
+    margin-bottom: 0.3em;
+}

@@ -10,12 +10,14 @@
     "react-dom": "^16.9.0",
     "react-router-dom": "^4.3.1",
     "react-scripts": "^3.1.1",
+    "react-scroll": "^1.7.14",
     "react-select": "^3.0.4",
     "react-sticky-footer": "0.1.0-rc3",
+    "socket.io-client": "^2.3.0",
     "yarn": "^1.17.3"
   },
   "scripts": {
-    "start": "node node_modules/http-server/bin/http-server -p 3000 src",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "mocha test/**/*.js",
     "eject": "react-scripts eject",
@@ -36,6 +38,7 @@
     "eslint-plugin-react": "^7.14.3",
     "javascript-style-guide": "^1.0.1",
     "mocha": "^6.2.0",
+    "react-socket-io": "^0.2.5",
     "selenium-webdriver": "^3.6.0"
   }
 }

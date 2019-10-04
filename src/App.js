@@ -7,8 +7,10 @@ import Forms from './components/Forms.js';
 import Login from './components/Login.js';
 import Logout from './components/Logout.js';
 import EditReport from './reports/EditReport.js';
+import ChatClient from './socket/ChatClient.js';
 
 import './styles/App.css';
+
 
 class App extends Component {
     // componentDidUpdate(prevProps) {
@@ -21,9 +23,9 @@ class App extends Component {
       const loggedIn = sessionStorage.getItem('jwtToken') != null;
 
       if (!loggedIn) {
-          loginLink = <li key="login"><Link to="/login/">Logga In</Link></li>
+          loginLink = <li key="login"><Link to="/login/">Logga In</Link></li>;
       } else {
-          loginLink = <li key="logout"><Link to="/logout/">Logga Ut</Link></li>
+          loginLink = <li key="logout"><Link to="/logout/">Logga Ut</Link></li>;
       }
 
     return (
@@ -33,7 +35,8 @@ class App extends Component {
             <ul>
               <li key="home"><Link to="/">Hem</Link></li>
               <li key="reports"><Link to="/reports/">Veckorapporter</Link></li>
-              <li key="form"><Link to="/forms/">Formulär</Link></li>
+              <li key="form"><Link to="/forms/">Registrering</Link></li>
+              <li key="chat"><Link to="/chat-client/">Chatt</Link></li>
               {loginLink}
             </ul>
           </nav>
@@ -43,6 +46,7 @@ class App extends Component {
           <Route path="/login/" component={Login} />
           <Route path="/logout/" component={Logout} />
           <Route path="/reports/edit-report/:weeknumber" component={EditReport} />
+          <Route path="/chat-client/" component={ChatClient} />
           <div className="footer">
             <p>Copyright &copy; Emelie Åslund</p>
           </div>
