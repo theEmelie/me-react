@@ -124,7 +124,7 @@ test.describe("Use-case 2, Reports->Forms", function() {
 
     test.it("Test go from Reports to Register Form", function(done) {
         // Use nav link to go to form page
-        browser.findElement(By.linkText("Formulär")).then(function(element) {
+        browser.findElement(By.linkText("Registrering")).then(function(element) {
             element.click();
         });
 
