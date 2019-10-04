@@ -13,7 +13,7 @@ class ChatClient extends Component {
             messages: [],
         };
 
-        this.socket = io('http://me-api.emelieaslund.me');
+        this.socket = io('https://chat-server.emelieaslund.me');
 
         this.socket.on('msgReceived', function(data) {
             addMessage(data);
