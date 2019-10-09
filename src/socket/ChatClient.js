@@ -39,7 +39,7 @@ class ChatClient extends Component {
         };
 
         this.getHistory = e => {
-            console.log("inside getHistory");
+            // console.log("inside getHistory");
             e.preventDefault();
             this.socket.emit('getHistory', {});
         };
