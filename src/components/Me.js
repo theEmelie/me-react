@@ -20,6 +20,6 @@ const Me = () => {
             <p>{message}</p>
         </main>
     );
-}
+};
 
 export default Me;

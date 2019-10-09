@@ -29,7 +29,7 @@ class AddReport extends Component {
     }
 
     handleAddResponse(response) {
-        if (response.hasOwnProperty("data")) {
+        if (Object.prototype.hasOwnProperty.call(response, "data")) {
             window.location.href="/reports";
         } else {
             console.log(response.error);
@@ -49,7 +49,8 @@ class AddReport extends Component {
                 title: this.state.fields["title"],
                 description: this.state.fields["description"]
             }),
-            headers: {'Content-Type': 'application/json', 'x-access-token': sessionStorage.getItem('jwtToken')}
+            headers: {'Content-Type': 'application/json',
+                'x-access-token': sessionStorage.getItem('jwtToken')}
         })
             .then(res => res.json())
             .then(response => this.handleAddResponse(response));
@@ -62,17 +63,24 @@ class AddReport extends Component {
                 <form onSubmit={this.handleSubmit}>
                     <label>
                 Veckonummer: <br/>
-                        <input name="weeknumber" className={this.state.weeknumber} type="number" value={this.state.weeknumber} onChange={this.fieldChange.bind(this, "weeknumber")} />
+                        <input name="weeknumber" className={this.state.weeknumber}
+                            type="number" value={this.state.weeknumber}
+                            onChange={this.fieldChange.bind(this, "weeknumber")} />
                     </label><br/>
 
                     <label>
                 Titel: <br/>
-                        <input name="title" className={this.state.title} type="text" value={this.state.title} onChange={this.fieldChange.bind(this, "title")} />
+                        <input name="title" className={this.state.title}
+                            type="text" value={this.state.title}
+                            onChange={this.fieldChange.bind(this, "title")} />
                     </label><br/>
 
                     <label>
                 Beskrivning: <br/>
-                        <textarea rows="25" cols="60" name="description" className={this.state.description} type="text" value={this.state.description} onChange={this.fieldChange.bind(this, "description")} />
+                        <textarea rows="25" cols="60" name="description"
+                            className={this.state.description} type="text"
+                            value={this.state.description}
+                            onChange={this.fieldChange.bind(this, "description")} />
                     </label><br/>
 
                     <input type="submit" className="input-submit" value="Lägg till" />

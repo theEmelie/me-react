@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import '../styles/forms.css';
 
@@ -64,5 +65,5 @@ class ShowReport extends Component {
         );
     }
 }
-
+ShowReport.propTypes = {match: PropTypes.object};
 export default ShowReport;

@@ -14,9 +14,14 @@ class ChatClient extends Component {
         };
 
         this.socket = io('https://chat-server.emelieaslund.me');
+        // this.socket = io('http://localhost:9595');
 
         this.socket.on('msgReceived', function(data) {
             addMessage(data);
+            });
+
+        this.socket.on('chatHistory', function(history) {
+            restoreHistory(history);
             });
 
         this.sendMessage = e => {
@@ -33,7 +38,13 @@ class ChatClient extends Component {
             }
         };
 
-        this.setUsername = e => {
+        this.getHistory = e => {
+            console.log("inside getHistory");
+            e.preventDefault();
+            this.socket.emit('getHistory', {});
+        };
+
+        this.setUsername = () => {
            const username = this.state.username;
 
            this.setState({username: username});
@@ -47,18 +58,27 @@ class ChatClient extends Component {
 
            this.setState({messages: allMessages}, this.scrollToBottom);
        };
+
+       const restoreHistory = history => {
+           var allMessages = history.map(function(msg) {
+               return {timestamp: msg.timeMsg, user: msg.user, message: msg.message};
+           });
+
+           this.setState({messages: allMessages}, this.scrollToBottom);
+       };
    }
 
     scrollToBottom() {
         animateScroll.scrollToBottom({
             containerId: "allMessages", smooth: "easeOutQuint"
-    });
-}
+        });
+    }
 
     render() {
         return (
             <div className="Form1">
-                <h2>Meddelanden:</h2>
+                <h2 className="chatMsgHead">Meddelanden:</h2>
+                <button onClick={this.getHistory} className="historyButton">Chatt Historik</button>
                 <div id="allMessages" className="allMessages">
                 {this.state.messages.map((message, key) => {
                     return (

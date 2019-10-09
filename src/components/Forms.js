@@ -7,9 +7,11 @@ import '../styles/forms.css';
 var startYear = 2019;
 var numYears = 110;
 var yearArr = [];
+
 for (var i = 0; i < numYears; i++) {
     var year = startYear - i;
     var yearObj = {value: year, label: year.toString()};
+
     yearArr.push(yearObj);
 }
 
@@ -17,9 +19,11 @@ for (var i = 0; i < numYears; i++) {
 var startDay = 1;
 var numDays = 31;
 var dayArr = [];
+
 for (i = 0; i < numDays; i++) {
     var days = startDay + i;
     var dayObj = {value: days, label: days.toString()};
+
     dayArr.push(dayObj);
 }
 
@@ -37,7 +41,7 @@ let month = [
     { value: 10, label: 'Oktober'},
     { value: 11, label: 'November'},
     { value: 12, label: 'December'},
-]
+];
 
 class Forms extends Component {
     constructor(props) {
@@ -45,7 +49,7 @@ class Forms extends Component {
         this.state = {
             fields: {},
             errors: {}
-        }
+        };
 
     this.yearChange = this.yearChange.bind(this);
     this.monthChange = this.monthChange.bind(this);
@@ -59,13 +63,16 @@ class Forms extends Component {
 
     // Requirements for a valid email
     validateEmail(email) {
+        /* eslint-disable */
         var regEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        /* eslint-enable */
         return regEmail.test(String(email).toLowerCase());
     }
 
     // Requirements for a valid name
     validateName(name) {
         var regName = /^[a-zA-ZåäöÅÄÖ '!]+$/;
+
         return regName.test(String(name).toLowerCase());
     }
 
@@ -76,6 +83,7 @@ class Forms extends Component {
 
     handleChange(field, e) {
         let fields = this.state.fields;
+
         fields[field] = e.target.value;
         this.setState({
             fields
@@ -84,6 +92,7 @@ class Forms extends Component {
 
     fieldChange(field, e) {
         let fields = this.state.fields;
+
         fields[field] = e.target.value;
         console.log(e.target.value);
         this.setState({
@@ -94,6 +103,7 @@ class Forms extends Component {
 
     fieldDateChange(field, e) {
         let fields = this.state.fields;
+
         fields[field] = e.value;
         this.setState({
             fields
@@ -102,17 +112,20 @@ class Forms extends Component {
 
     yearChange(field, e) {
         this.fieldDateChange(field, e);
-        this.checkDate(this.state.fields["year"], this.state.fields["month"], this.state.fields["day"]);
+        this.checkDate(this.state.fields["year"],
+            this.state.fields["month"], this.state.fields["day"]);
     }
 
     monthChange(field, e) {
         this.fieldDateChange(field, e);
-        this.checkDate(this.state.fields["year"], this.state.fields["month"], this.state.fields["day"]);
+        this.checkDate(this.state.fields["year"],
+            this.state.fields["month"], this.state.fields["day"]);
     }
 
     dayChange(field, e) {
         this.fieldDateChange(field, e);
-        this.checkDate(this.state.fields["year"], this.state.fields["month"], this.state.fields["day"]);
+        this.checkDate(this.state.fields["year"],
+            this.state.fields["month"], this.state.fields["day"]);
     }
 
     // Check if date is valid
@@ -121,7 +134,8 @@ class Forms extends Component {
         let presumedDate = new Date(y, m-1, d);
 
         if (presumedDate.getDate() !== d) {
-            let dateValid = "dateInvalid"
+            let dateValid = "dateInvalid";
+
             this.setState({
                 dateValid
             });
@@ -130,7 +144,8 @@ class Forms extends Component {
                 errors
             });
         } else {
-            let dateValid = "dateValid"
+            let dateValid = "dateValid";
+
             this.setState({
                 dateValid
             });
@@ -145,11 +160,12 @@ class Forms extends Component {
     emailChange(field, e) {
         let errors = this.state.errors;
 
-        this.fieldChange(field, e)
+        this.fieldChange(field, e);
         let validEmail = this.validateEmail(e.target.value);
 
         if (validEmail) {
-            let emailValid = "emailValid"
+            let emailValid = "emailValid";
+
             this.setState({
                 emailValid
             });
@@ -158,7 +174,8 @@ class Forms extends Component {
                 errors
             });
         } else {
-            let emailValid = "emailInvalid"
+            let emailValid = "emailInvalid";
+
             this.setState({
                 emailValid
             });
@@ -174,11 +191,12 @@ class Forms extends Component {
     nameChange(field, e) {
         let errors = this.state.errors;
 
-        this.fieldChange(field, e)
+        this.fieldChange(field, e);
         let validName = this.validateName(e.target.value);
 
         if (validName) {
-            let nameValid = "nameValid"
+            let nameValid = "nameValid";
+
             this.setState({
                 nameValid
             });
@@ -187,7 +205,8 @@ class Forms extends Component {
                 errors
             });
         } else {
-            let nameValid = "nameInvalid"
+            let nameValid = "nameInvalid";
+
             this.setState({
                 nameValid
             });
@@ -202,11 +221,12 @@ class Forms extends Component {
     passChange(field, e) {
         let errors = this.state.errors;
 
-        this.fieldChange(field, e)
+        this.fieldChange(field, e);
         let validField = this.validatePass(e.target.value);
 
         if (validField) {
-            let passValid = "passValid"
+            let passValid = "passValid";
+
             this.setState({
                 passValid
             });
@@ -215,7 +235,8 @@ class Forms extends Component {
                 errors
             });
         } else {
-            let passValid = "passInvalid"
+            let passValid = "passInvalid";
+
             this.setState({
                 passValid
             });
@@ -229,7 +250,8 @@ class Forms extends Component {
     handleSubmit(e) {
         e.preventDefault();
         // console.log(this.state.errors);
-        this.checkDate(this.state.fields["year"], this.state.fields["month"], this.state.fields["day"]);
+        this.checkDate(this.state.fields["year"],
+            this.state.fields["month"], this.state.fields["day"]);
         if (this.state.errors["dateError"]) {
             alert('Du måste ange ett giltigt födelsedatum');
         } else if (this.state.errors["passError"]) {
@@ -240,7 +262,9 @@ class Forms extends Component {
             alert('Du måste ange ett giltigt namn');
         } else {
             const url = "https://me-api.emelieaslund.me/auth/register";
-            const dob = this.state.fields["year"].toString() + "-" + this.state.fields["month"].toString() + "-" + this.state.fields["day"].toString();
+            const dob = this.state.fields["year"].toString() + "-" +
+                this.state.fields["month"].toString() + "-" + this.state.fields["day"].toString();
+
             fetch(url, {
                 method: 'POST',
                 body: JSON.stringify({
@@ -250,8 +274,7 @@ class Forms extends Component {
                     birthdate: dob }),
                 headers: {'Content-Type': 'application/json'}
             })
-            .then(res => res.json())
-            .then(response => console.log("success"));
+            .then(res => res.json());
             alert('Du har registrerat en användare!');
         }
     }
@@ -263,36 +286,49 @@ class Forms extends Component {
             <form onSubmit={this.handleSubmit}>
                 <label>
                 Namn: <br/>
-                <input name="names" className={this.state.nameValid} type="text" value={this.state.name} onChange={this.nameChange.bind(this, "name")} />
+                <input name="names" className={this.state.nameValid} type="text"
+                    value={this.state.name} onChange={this.nameChange.bind(this, "name")} />
                 </label><br/>
 
                 <label>
                 E-post: <br/>
-                <input name="email" className={this.state.emailValid} type="email" value={this.state.email} onChange={this.emailChange.bind(this, "email")} />
+                <input name="email" className={this.state.emailValid} type="email"
+                    value={this.state.email} onChange={this.emailChange.bind(this, "email")} />
                 </label><br/>
 
                 <label>
                 Lösenord (minst 6 karaktärer): <br/>
-                <input name="pass" className={this.state.passValid} type="password" value={this.state.pass} onChange={this.passChange.bind(this, "pass")} />
+                <input name="pass" className={this.state.passValid} type="password"
+                    value={this.state.pass} onChange={this.passChange.bind(this, "pass")} />
                 </label><br/>
 
                 <label>
                 Födelsedatum: <br/>
                 </label>
+
                 <div className="selectOption">
-                <Select className={this.state.dateValid} options ={yearArr} placeholder="År" onChange={this.yearChange.bind(this, "year")} />
+                <Select className={this.state.dateValid} options ={yearArr} placeholder="År"
+                    onChange={this.yearChange.bind(this, "year")} />
                 </div>
+
                 <div className="selectOption1">
-                <Select className={this.state.dateValid} options ={month} placeholder="Månad" onChange={this.monthChange.bind(this, "month")} />
+                <Select className={this.state.dateValid} options ={month} placeholder="Månad"
+                    onChange={this.monthChange.bind(this, "month")} />
                 </div>
+
                 <div className="selectOption2">
-                <Select className={this.state.dateValid} options ={dayArr} placeholder="Dag" onChange={this.dayChange.bind(this, "day")} />
+                <Select className={this.state.dateValid} options ={dayArr} placeholder="Dag"
+                    onChange={this.dayChange.bind(this, "day")} />
                 </div>
                 <br/>
 
                 <label>
-                <a href={"https://www.vpnmentor.com/wp-content/uploads/2016/06/vpnMentor-free-privacy-policy.pdf"} className="accept">{"Jag godkänner användarvillkoren"}</a>
-                <input name="check" className="input-field-check" type="checkbox" value={this.state.check} onChange={this.handleChange.bind(this, "check")} required />
+                <a href={"https://www.vpnmentor.com/wp-content/" +
+                    "uploads/2016/06/vpnMentor-free-privacy-policy.pdf"}
+                    className="accept">{"Jag godkänner användarvillkoren"}</a>
+                <input name="check" className="input-field-check" type="checkbox"
+                    value={this.state.check} onChange={this.handleChange.bind(this, "check")}
+                    required />
                 </label><br/>
 
                 <input type="submit" className="input-submit" value="Registrera" />

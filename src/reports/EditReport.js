@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import '../styles/forms.css';
 
@@ -42,7 +43,7 @@ class EditReport extends Component {
     }
 
     handleEditResponse(response) {
-        if (response.hasOwnProperty("data")) {
+        if (Object.prototype.hasOwnProperty.call(response, "data")) {
             window.location.href="/reports";
         } else {
             alert('ERROR!');
@@ -104,5 +105,5 @@ class EditReport extends Component {
         );
     }
 }
-
+EditReport.propTypes = {match: PropTypes.object};
 export default EditReport;

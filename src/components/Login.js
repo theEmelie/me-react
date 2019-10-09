@@ -7,13 +7,14 @@ class Login extends Component {
         super(props);
         this.state = {
             fields: {}
-        }
+        };
         this.fieldChange = this.fieldChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
         fieldChange(field, e) {
             let fields = this.state.fields;
+
             fields[field] = e.target.value;
             this.setState({
                 fields
@@ -22,31 +23,32 @@ class Login extends Component {
 
         handleLoginResponse(response) {
             console.log(response);
-            if (response.hasOwnProperty("data")) {
-                console.log(response.data)
+            if (Object.prototype.hasOwnProperty.call(response, "data")) {
+                console.log(response.data);
                 sessionStorage.setItem('jwtToken', response.data.token);
                 alert('Du har loggat in!');
                 window.location.href="/";
             } else {
-                console.log(response.error)
-                alert('Fel inloggningsuppgifter')
+                console.log(response.error);
+                alert('Fel inloggningsuppgifter');
             }
         }
 
     handleSubmit(e) {
         e.preventDefault();
-            const url = "https://me-api.emelieaslund.me/auth/login";
-            fetch(url, {
-                method: 'POST',
-                body: JSON.stringify({
-                    email: this.state.fields["email"],
-                    password: this.state.fields["pass"]
-                }),
-                headers: {'Content-Type': 'application/json'}
-            })
-            .then(res => res.json())
-            .then(response => this.handleLoginResponse(response));
-        }
+        const url = "https://me-api.emelieaslund.me/auth/login";
+
+        fetch(url, {
+            method: 'POST',
+            body: JSON.stringify({
+                email: this.state.fields["email"],
+                password: this.state.fields["pass"]
+            }),
+            headers: {'Content-Type': 'application/json'}
+        })
+        .then(res => res.json())
+        .then(response => this.handleLoginResponse(response));
+    }
 
     render() {
         return (
@@ -55,12 +57,14 @@ class Login extends Component {
             <form onSubmit={this.handleSubmit}>
                 <label>
                 E-post: <br/>
-                <input name="email" className={this.state.emailValid} type="email" value={this.state.email} onChange={this.fieldChange.bind(this, "email") } />
+                <input name="email" className={this.state.emailValid} type="email"
+                    value={this.state.email} onChange={this.fieldChange.bind(this, "email") } />
                 </label><br/>
 
                 <label>
                 Lösenord: <br/>
-                <input name="pass" className={this.state.passValid} type="password" value={this.state.pass} onChange={this.fieldChange.bind(this, "pass")} />
+                <input name="pass" className={this.state.passValid} type="password"
+                    value={this.state.pass} onChange={this.fieldChange.bind(this, "pass")} />
                 </label><br/>
                 <br/>
 
