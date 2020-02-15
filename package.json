@@ -15,7 +15,7 @@
     "react-select": "^3.0.4",
     "react-sticky-footer": "0.1.0-rc3",
     "socket.io-client": "^2.3.0",
-    "yarn": "^1.17.3"
+    "yarn": "^1.22.0"
   },
   "scripts": {
     "start": "react-scripts start",
